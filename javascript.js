@@ -49,29 +49,31 @@ function playGame () {
     let humanScore = 0;
     let computerScore = 0;
 
-    for (let i = 0; i < 5; i++) {
+    
+    console.log(`--- Round 1 ---`);
 
-        console.log(`--- Round ${i + 1} ---`);
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
 
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
 
-        playRound(humanSelection, computerSelection);
+    console.log(`Human: ${humanScore}`);
+    console.log(`Computer: ${computerScore}`)
 
-        console.log(`Human: ${humanScore}`);
-        console.log(`Computer: ${computerScore}`)
 
+    let winner;
+
+    if (humanScore > computerScore) {
+    winner = "Human";
+    } else if (computerScore > humanScore) {
+    winner = "Computer";
+    } else {
+    winner = "It's a Tie!";
     }
 
-    return {
-    winner: humanScore > computerScore ? "Human" : "Computer",
-    finalScore: `${humanScore} - ${computerScore}`
-    };
+    return winner;
 
 }
 
 const matchResult = playGame()
-
-console.log(`Winner: ${matchResult.winner}`); 
-console.log(`Final Score ${matchResult.finalScore}`);
-
+console.log(`Winner: ${matchResult}`);
