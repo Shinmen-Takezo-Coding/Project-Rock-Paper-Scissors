@@ -1,0 +1,18 @@
+.card {
+    text-align: center;
+    flex: 1;
+    max-width: 200px; /* Prevents them from getting too wide */
+    max-height: 300px; /* Ensures they are tall enough */
+    min-height: 200px;
+
+    border: 3px solid #333;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#face-off-area {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}

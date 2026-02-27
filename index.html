@@ -8,6 +8,38 @@
     <script src="javascript.js" defer></script>
 </head>
 <body>
+
+    <div id="current-score">Player: 0 | Computer: 0</div>
+
+    <div id="face-off-area">
+
+        <div id="player-card" class="card">
+        <h3 id="player-selection-title">You chose</h3>
+        <div id="player-selection-icon">?</div>
+        <p id="player-selection-text">Waiting...</p>
+    </div>
+
+    <div id="computer-card" class="card">
+        <h3 id="computer-selection-title">Computer chose</h3>
+        <div id="computer-selection-icon">?</div>
+        <p id="computer-selection-text">Waiting for you...</p>
+    </div>
+
+    </div>
+
+    <div id="final-result">First to 5 wins the series!</div>
+
+    <div id="button-container">
     
+        <button id="rock" class="choice-btn">Rock</button>
+        <button id="paper" class="choice-btn">Paper</button>
+        <button id="scissors" class="choice-btn">Scissors</button>
+
+    </div>
+
+    <button id="play-again-btn" style="display: none;">Play Again</button>
+    
+    
+
 </body>
 </html>
