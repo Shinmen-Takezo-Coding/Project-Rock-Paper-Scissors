@@ -1,18 +1,280 @@
-.card {
-    text-align: center;
-    flex: 1;
-    max-width: 200px; /* Prevents them from getting too wide */
-    max-height: 300px; /* Ensures they are tall enough */
-    min-height: 200px;
-
-    border: 3px solid #333;
-    border-radius: 15px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+/* -------------------------------------------------------------------------- */
+/* 1. RESET & BASE SETTINGS                                                   */
+/* -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-#face-off-area {
+:root {
+    /* Backgrounds & Surfaces */
+    --bg-main: #0c0d10;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-bg-hover: rgba(255, 255, 255, 0.06);
+    --footer-bg: rgba(0, 0, 0, 0.2);
+    
+    /* Borders */
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-ghost: rgba(255, 255, 255, 0.04);
+
+    /* Colors */
+    --text-primary: #f7f8f8;
+    --text-secondary: #8a8f98;
+    --accent-indigo: #5e6ad2;
+    --accent-glow: 0 0 20px rgba(94, 106, 210, 0.3);
+
+    /* Layout */
+    --font-stack: "Inter", -apple-system, system-ui, sans-serif;
+    --radius-m: 8px;
+    --radius-l: 12px;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-stack);
+    line-height: 1.5;
+    letter-spacing: -0.011em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. NAVIGATION                                                              */
+/* -------------------------------------------------------------------------- */
+.site-nav {
+    min-height: 56px;
+    padding: 0 1.5rem;
     display: flex;
-    gap: 50px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-subtle);
+    backdrop-filter: blur(12px);
+}
+
+.logo-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. DISPLAY STACK (THE CARDS)                                               */
+/* -------------------------------------------------------------------------- */
+.display-stack {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 16px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.linear-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-l);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-ghost);
+}
+
+.header-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.card-body { padding: 16px; }
+
+/* Stats Styling */
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 0.9rem;
+}
+
+.stat-row .label { color: var(--text-secondary); }
+.stat-row .value { font-weight: 600; }
+
+/* Message/Thread Item */
+.message-item {
+    display: flex;
+    gap: 12px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    background: var(--card-bg-hover);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
     justify-content: center;
+}
+
+.author {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+#round-result-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.card-footer {
+    padding: 0 16px;
+    height: 60px;
+    background: var(--footer-bg);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. BATTLE ZONE (CENTER)                                                    */
+/* -------------------------------------------------------------------------- */
+.game-container {
+    max-width: 850px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.battle-zone {
+    display: grid;
+    grid-template-columns: 1fr 50px 1fr;
+    gap: 16px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.choice-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-l);
+    padding: 36px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.vs-divider {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--text-secondary);
+    opacity: 0.3;
+    align-self: center;
+    justify-self: center;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. SELECTION DOCK (BOTTOM)                                                 */
+/* -------------------------------------------------------------------------- */
+.selection-dock {
+    display: flex;
+    align-items: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    padding: 8px;
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+}
+
+.choice-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    min-width: 100px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.choice-btn .icon {
+    font-size: 1.5rem;
+    filter: grayscale(100%);
+    transition: all 0.2s ease;
+}
+
+.choice-btn .label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.choice-btn:hover { background: var(--card-bg-hover); }
+.choice-btn:hover .icon { filter: grayscale(0%); transform: scale(1.1); }
+.choice-btn:hover .label { color: var(--text-primary); }
+
+.separator {
+    width: 1px;
+    height: 24px;
+    background: var(--border-subtle);
+    margin: 0 4px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. BUTTON VARIANTS                                                         */
+/* -------------------------------------------------------------------------- */
+.btn-primary {
+    background-color: #e2e2e2;
+    color: #0c0d10;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+}
+
+.btn-ghost {
+    color: var(--text-secondary);
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.btn-ghost:hover {
+    background-color: #1f2023;
+    color: var(--text-primary);
 }

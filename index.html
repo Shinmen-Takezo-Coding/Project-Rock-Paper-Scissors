@@ -3,43 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RPS - Battle Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="javascript.js" defer></script>
 </head>
 <body>
 
-    <div id="current-score">Player: 0 | Computer: 0</div>
+    <nav class="site-nav">
+    <ul class="nav-logo-section">
+        <li class="logo-item">
+            <img src="images/Game Logo.svg" alt="">
+            <span class="logo-text">RPS Arena</span>
+        </li>
+    </ul>
 
-    <div id="face-off-area">
-
-        <div id="player-card" class="card">
-        <h3 id="player-selection-title">You chose</h3>
-        <div id="player-selection-icon">?</div>
-        <p id="player-selection-text">Waiting...</p>
+    <div class="nav-actions">
+        <button class="btn-ghost">Main Menu</button>
+        <button class="btn-primary" id="reset-game-btn">Reset</button>
+    </div>
+    </nav>
+        
     </div>
 
-    <div id="computer-card" class="card">
-        <h3 id="computer-selection-title">Computer chose</h3>
-        <div id="computer-selection-icon">?</div>
-        <p id="computer-selection-text">Waiting for you...</p>
+    <div class="game-container">
+<div class="display-stack">
+    <div class="linear-card">
+        <div class="card-header">
+            <span class="header-icon">📊</span>
+            <span class="header-title">Match Statistics</span>
+        </div>
+        <div class="card-body stats-body">
+            <div class="stat-row">
+                <span class="label">Round</span>
+                <span id="current-round" class="value">1</span>
+            </div>
+            <div class="stat-row">
+                <span class="label">Player Score</span>
+                <span id="player-score" class="value">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="label">CPU Score</span>
+                <span id="cpu-score" class="value">0</span>
+            </div>
+        </div>
     </div>
 
+    <div class="linear-card" id="feedback-card">
+        <div class="card-header">
+            <span class="header-icon">💬</span>
+            <span class="header-title">Battle Report</span>
+        </div>
+        <div class="card-body">
+            <div class="message-item">
+                <div class="avatar">🤖</div>
+                <div class="message-content">
+                    <span class="author">Game Referee</span>
+                    <p id="round-result-text">Waiting for your move...</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button id="next-round-btn" class="btn-primary" style="display: none;">Next Round</button>
+        </div>
     </div>
+</div>
 
-    <div id="final-result">First to 5 wins the series!</div>
+        <main class="battle-zone">
+            <section class="choice-card" id="human-card">
+                <h3>You</h3>
+                <div class="card-display" id="human-choice-display">❓</div>
+            </section>
 
-    <div id="button-container">
-    
-        <button id="rock" class="choice-btn">Rock</button>
-        <button id="paper" class="choice-btn">Paper</button>
-        <button id="scissors" class="choice-btn">Scissors</button>
+            <div class="vs-divider">VS</div>
 
+            <section class="choice-card" id="computer-card">
+                <h3>CPU</h3>
+                <div class="card-display" id="cpu-choice-display">❓</div>
+            </section>
+        </main>
+
+
+    <footer class="controls-section">
+        <div class="selection-dock">
+            <button class="choice-btn" data-choice="1">
+                <span class="icon">✊</span>
+                <span class="label">Rock</span>
+            </button>
+            
+            <div class="separator"></div>
+
+            <button class="choice-btn" data-choice="2">
+                <span class="icon">✋</span>
+                <span class="label">Paper</span>
+            </button>
+
+            <div class="separator"></div>
+
+            <button class="choice-btn" data-choice="3">
+                <span class="icon">✌️</span>
+                <span class="label">Scissors</span>
+            </button>
+        </div>
+    </footer>
     </div>
-
-    <button id="play-again-btn" style="display: none;">Play Again</button>
-    
-    
 
 </body>
 </html>
