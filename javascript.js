@@ -143,7 +143,7 @@ function updateRoundWinnerUI() {
 }
 
 function updateRoundUI() {
-    roundDisplay.textContent = `Round: ${gameState.roundNumber}`;
+    roundDisplay.textContent = `${gameState.roundNumber}`;
 }
 
 function updateScoreUI() {
